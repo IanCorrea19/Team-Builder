@@ -7,7 +7,7 @@ import Perfis from './pages/Perfis';
 import { getPerfilAtivo, sair } from './perfis';
 
 function Menu() {
-  useLocation(); // faz o menu reler o perfil ativo a cada navegação
+  useLocation(); 
   const navigate = useNavigate();
   const perfil = getPerfilAtivo();
 
