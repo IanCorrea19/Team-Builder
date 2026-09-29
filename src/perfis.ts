@@ -1,15 +1,9 @@
-// src/perfis.ts — toda a lógica de perfis, login e equipes fica aqui.
-// Estrutura no localStorage:
-//   perfis       -> lista de perfis
-//   perfilAtivo  -> id do perfil logado
-//   equipe_<id>  -> equipe de cada perfil
-
 export interface Perfil {
   id: string;
   nome: string;
   avatar: string;
   salt: string;
-  senhaHash: string; // '' = perfil sem senha (migrado da versão antiga)
+  senhaHash: string;
   criadoEm: number;
 }
 
@@ -43,7 +37,6 @@ async function gerarHash(senha: string, salt: string) {
 
 const novoSalt = () => crypto.randomUUID();
 
-// Converte os dados da versão antiga (treinador/equipa_) para o novo formato
 function migrarLegado() {
   const antigo = localStorage.getItem('treinador');
   if (!antigo || localStorage.getItem(K_PERFIS)) return;
